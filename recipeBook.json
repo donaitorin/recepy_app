@@ -17,7 +17,69 @@
       "responses": [
         {
           "uuid": "856b8f1e-373d-4b90-b228-624b4b367665",
-          "body": "{\n  \"recipes\": [\n    {\n        \"name\": \"Classic Spaghetti Carbonara\",\n        \"author\": \"Giovanni Rana\",\n        \"image_link\": \"https://example.com/spaghetti-carbonara.jpg\",\n        \"recipe\": [\n            \"Cook spaghetti according to package instructions until al dente.\",\n            \"In a pan, cook diced pancetta until crispy, then add minced garlic.\",\n            \"Whisk together eggs, grated Parmesan cheese, salt, and pepper in a bowl.\",\n            \"Toss the cooked spaghetti in the pancetta pan, remove from heat, and mix in the egg mixture until creamy.\"\n        ]\n    },\n    {\n        \"name\": \"Chocolate Chip Cookies\",\n        \"author\": \"Betty Crocker\",\n        \"image_link\": \"https://example.com/chocolate-chip-cookies.jpg\",\n        \"recipe\": [\n            \"Preheat the oven to 375°F (190°C) and line a baking sheet with parchment paper.\",\n            \"Mix flour, baking soda, and salt in a bowl. In another bowl, cream butter, sugar, and brown sugar.\",\n            \"Add eggs and vanilla to the butter mixture, then gradually mix in the dry ingredients.\",\n            \"Fold in chocolate chips, drop spoonfuls of dough onto the baking sheet, and bake for 9-11 minutes.\"\n        ]\n    },\n    {\n        \"name\": \"Vegetable Stir-Fry\",\n        \"author\": \"Jamie Oliver\",\n        \"image_link\": \"https://example.com/vegetable-stir-fry.jpg\",\n        \"recipe\": [\n            \"Heat oil in a wok or large skillet over high heat.\",\n            \"Add chopped vegetables (e.g., bell peppers, broccoli, carrots) and stir-fry for 3-4 minutes.\",\n            \"In a small bowl, mix soy sauce, garlic, ginger, and a pinch of sugar, then pour over the vegetables.\",\n            \"Cook for another 2 minutes, stirring constantly, and serve hot with rice or noodles.\"\n        ]\n    },\n    {\n        \"name\": \"Avocado Toast\",\n        \"author\": \"Alice Waters\",\n        \"image_link\": \"https://example.com/avocado-toast.jpg\",\n        \"recipe\": [\n            \"Toast a slice of whole-grain bread until golden and crispy.\",\n            \"Mash a ripe avocado in a bowl and season with salt, pepper, and a squeeze of lemon juice.\",\n            \"Spread the mashed avocado evenly over the toast.\",\n            \"Top with optional additions like cherry tomatoes, feta cheese, or a poached egg.\"\n        ]\n    }\n  ]\n}",
+          "body": "{\n  \"recipes\": [\n    {\n        \"id\": \"1\",\n        \"name\": \"Classic Spaghetti Carbonara\",\n        \"author\": \"Giovanni Rana\",\n        \"image_link\": \"https://example.com/spaghetti-carbonara.jpg\",\n        \"recipe\": [\n            \"Cook spaghetti according to package instructions until al dente.\",\n            \"In a pan, cook diced pancetta until crispy, then add minced garlic.\",\n            \"Whisk together eggs, grated Parmesan cheese, salt, and pepper in a bowl.\",\n            \"Toss the cooked spaghetti in the pancetta pan, remove from heat, and mix in the egg mixture until creamy.\"\n        ]\n    },\n    {\n        \"id\": \"2\",\n        \"name\": \"Chocolate Chip Cookies\",\n        \"author\": \"Betty Crocker\",\n        \"image_link\": \"https://example.com/chocolate-chip-cookies.jpg\",\n        \"recipe\": [\n            \"Preheat the oven to 375°F (190°C) and line a baking sheet with parchment paper.\",\n            \"Mix flour, baking soda, and salt in a bowl. In another bowl, cream butter, sugar, and brown sugar.\",\n            \"Add eggs and vanilla to the butter mixture, then gradually mix in the dry ingredients.\",\n            \"Fold in chocolate chips, drop spoonfuls of dough onto the baking sheet, and bake for 9-11 minutes.\"\n        ]\n    },\n    {\n        \"id\": \"3\",\n        \"name\": \"Vegetable Stir-Fry\",\n        \"author\": \"Jamie Oliver\",\n        \"image_link\": \"https://example.com/vegetable-stir-fry.jpg\",\n        \"recipe\": [\n            \"Heat oil in a wok or large skillet over high heat.\",\n            \"Add chopped vegetables (e.g., bell peppers, broccoli, carrots) and stir-fry for 3-4 minutes.\",\n            \"In a small bowl, mix soy sauce, garlic, ginger, and a pinch of sugar, then pour over the vegetables.\",\n            \"Cook for another 2 minutes, stirring constantly, and serve hot with rice or noodles.\"\n        ]\n    },\n    {\n        \"id\": \"4\",\n        \"name\": \"Avocado Toast\",\n        \"author\": \"Alice Waters\",\n        \"image_link\": \"https://example.com/avocado-toast.jpg\",\n        \"recipe\": [\n            \"Toast a slice of whole-grain bread until golden and crispy.\",\n            \"Mash a ripe avocado in a bowl and season with salt, pepper, and a squeeze of lemon juice.\",\n            \"Spread the mashed avocado evenly over the toast.\",\n            \"Top with optional additions like cherry tomatoes, feta cheese, or a poached egg.\"\n        ]\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "93edcf72-50e5-473a-9c03-9915c8841af9",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "favorites",
+      "responses": [
+        {
+          "uuid": "655ff18d-f211-418d-ae5a-c59ee7be3a90",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "c356550a-4891-4821-9d0b-fd2b040764f4",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "favorites",
+      "responses": [
+        {
+          "uuid": "db83a7d2-bab4-4e08-bd1d-5b746438c19b",
+          "body": "{}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -44,6 +106,14 @@
     {
       "type": "route",
       "uuid": "917c2001-ec03-4389-ab04-b5d5f2fac924"
+    },
+    {
+      "type": "route",
+      "uuid": "93edcf72-50e5-473a-9c03-9915c8841af9"
+    },
+    {
+      "type": "route",
+      "uuid": "c356550a-4891-4821-9d0b-fd2b040764f4"
     }
   ],
   "proxyMode": false,

@@ -1,64 +1,44 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recepy_app/components/custom_text_field.dart';
+import 'package:recepy_app/components/recipe_card.dart';
+import 'package:recepy_app/models/recipe_model.dart';
+import 'package:recepy_app/providers/recipes_provider.dart';
 import 'package:recepy_app/screens/recipe_detail._screen.dart';
-import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  Future<List<dynamic>> FetchRecipes() async {
-    final url = Uri.parse('http://localhost:3001/recipes');
-
-    try {
-      final response = await http.get(url);
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return data['recipes'];
-      }
-      print('Error: ${response.statusCode}');
-      return [];
-    } catch (e) {
-      print('Error: $e');
-      return [];
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    FetchRecipes();
+    final recipesProvider = Provider.of<RecipesProvider>(context);
+    if (recipesProvider.isLoading) {
+      recipesProvider.fetchRecipes();
+    }
+
     return Scaffold(
-      body: FutureBuilder<List<dynamic>>(
-          future: FetchRecipes(),
-          builder: (context, snapshot) {
-            final recipes = snapshot.data;
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.orange,
-                  color: Colors.grey,
-                ),
-              );
-            }
-            if (snapshot.connectionState == ConnectionState.done &&
-                snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
-            }
-            if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(
-                child: Text('No recipes found'),
-              );
-            }
-            return ListView.builder(
-              itemCount: recipes!.length,
-              itemBuilder: (context, index) {
-                return recipesCard(context, recipes[index]);
-              },
-            );
-          }),
+      body: Consumer<RecipesProvider>(builder: (context, provider, child) {
+        final recipes = provider.recipes;
+        if (provider.isLoading) {
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.orange,
+              color: Colors.grey,
+            ),
+          );
+        }
+        if (recipes.isEmpty) {
+          return Center(
+            child: Text('No recipes found'),
+          );
+        }
+        return ListView.builder(
+          itemCount: recipes.length,
+          itemBuilder: (context, index) {
+            return RecipeCard(recipe: recipes[index]);
+          },
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showButton(context);
@@ -81,70 +61,6 @@ class HomeScreen extends StatelessWidget {
               color: Colors.white,
               child: RecipeForm(),
             ));
-  }
-
-  Widget recipesCard(BuildContext context, dynamic recipe) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return RecipeDetailScreen(
-            name: recipe['name'],
-          );
-        }));
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 125,
-          child: Card(
-            child: Row(
-              children: [
-                Container(
-                  height: 125,
-                  width: 100,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      'https://cdn.bolivia.com/gastronomia/2012/10/26/lasana-boliviana-3495.webp',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 26,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      recipe['name'],
-                      style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Container(
-                      height: 2,
-                      width: 75,
-                      color: Colors.orange,
-                    ),
-                    Text(
-                      recipe['author'],
-                      style: TextStyle(fontSize: 16, fontFamily: 'Quicksand'),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
 

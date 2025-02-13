@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recepy_app/providers/recipes_provider.dart';
+import 'package:recepy_app/screens/favorites_screen.dart';
 import 'package:recepy_app/screens/home_screen.dart';
 
 void main() {
@@ -10,10 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'el title',
-      home: RecipeBook(),
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => RecipesProvider())],
+      child: MaterialApp(
+        title: 'el title',
+        home: RecipeBook(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
@@ -24,7 +30,7 @@ class RecipeBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 1,
+        length: 2,
         child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.orange,
@@ -42,11 +48,13 @@ class RecipeBook extends StatelessWidget {
                     Tab(
                       icon: Icon(Icons.home),
                       text: 'Home',
-                    )
+                    ),
+                    Tab(
+                      icon: Icon(Icons.favorite),
+                      text: 'Favorites',
+                    ),
                   ]),
             ),
-            body: TabBarView(children: [
-              HomeScreen(),
-            ])));
+            body: TabBarView(children: [HomeScreen(), FavoritesScreen()])));
   }
 }
