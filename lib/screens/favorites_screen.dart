@@ -4,6 +4,7 @@ import 'package:recepy_app/components/recipe_card.dart';
 import 'package:recepy_app/models/recipe_model.dart';
 import 'package:recepy_app/providers/recipes_provider.dart';
 import 'package:recepy_app/screens/recipe_detail._screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
@@ -26,13 +27,9 @@ class FavoritesScreen extends StatelessWidget {
           }
           if (recipesFavorites.isEmpty) {
             return Center(
-              child: Text('No favorites recipes found'),
+              child: Text(AppLocalizations.of(context)!.noRecipes),
             );
           }
-
-          print('recicesFavorites $recipesFavorites');
-          print('length ${recipesFavorites.length}');
-          print('data ${recipesFavorites[0]}');
 
           return ListView.builder(
             itemCount: recipesFavorites.length,
@@ -58,7 +55,10 @@ class FavoriteRecipeCard extends StatelessWidget {
           return RecipeDetailScreen(recipeData: recipe);
         }));
       },
-      child: RecipeCard(recipe: recipe),
+      child: Semantics(
+          label: 'Recepy Card',
+          hint: 'Touch it to see details of ${recipe.name}',
+          child: RecipeCard(recipe: recipe)),
     );
   }
 }

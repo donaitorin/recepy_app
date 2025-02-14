@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recepy_app/components/custom_text_field.dart';
 import 'package:recepy_app/components/recipe_card.dart';
-import 'package:recepy_app/models/recipe_model.dart';
 import 'package:recepy_app/providers/recipes_provider.dart';
-import 'package:recepy_app/screens/recipe_detail._screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         }
         if (recipes.isEmpty) {
           return Center(
-            child: Text('No recipes found'),
+            child: Text(AppLocalizations.of(context)!.noRecipes),
           );
         }
         return ListView.builder(

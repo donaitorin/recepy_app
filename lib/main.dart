@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:recepy_app/providers/recipes_provider.dart';
 import 'package:recepy_app/screens/favorites_screen.dart';
 import 'package:recepy_app/screens/home_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +18,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => RecipesProvider())],
       child: MaterialApp(
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+        ],
         title: 'el title',
         home: RecipeBook(),
         debugShowCheckedModeBanner: false,
